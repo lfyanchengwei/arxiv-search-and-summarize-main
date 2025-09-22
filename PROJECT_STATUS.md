@@ -23,7 +23,7 @@
 - ✅ **test_local.py** - 本地测试脚本
 
 ### 4. 功能特性
-- ✅ 搜索包含"embody"关键词的论文（2024-2025年）
+- ✅ 搜索包含"embodied"关键词的论文（2024-2025年）
 - ✅ 18个任务类别的自动分类
 - ✅ 结构化信息提取（方法、贡献、数据集、指标）
 - ✅ CSV格式输出和统计摘要
@@ -46,8 +46,8 @@ arXiv搜索 → 论文过滤 → LLM分析 → 任务分类 → CSV导出
 ## 📊 输出格式
 
 ### 主要文件
-- `embody_papers_analysis_YYYYMMDD_HHMMSS.csv` - 详细分析结果
-- `embody_papers_summary_YYYYMMDD_HHMMSS.csv` - 统计摘要
+- `embodied_papers_analysis_YYYYMMDD_HHMMSS.csv` - 详细分析结果
+- `embodied_papers_summary_YYYYMMDD_HHMMSS.csv` - 统计摘要
 
 ### CSV字段
 | 字段 | 描述 |
@@ -138,4 +138,4 @@ uv run python main.py --max_papers 50
 - ✅ 测试验证
 - ✅ 错误修复
 
-项目已经完全可用，可以开始分析包含"embody"关键词的学术论文！
+项目已经完全可用，可以开始分析包含"embodied"关键词的学术论文！

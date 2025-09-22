@@ -3,7 +3,7 @@
  <img width=200px height=200px src="assets/logo.svg" alt="logo"></a>
 </p>
 
-<h3 align="center">Embody Papers Analyzer</h3>
+<h3 align="center">embodied Papers Analyzer</h3>
 
 <div align="center">
 
@@ -14,15 +14,15 @@
 
 ---
 
-<p align="center"> 智能分析包含"embody"关键词的学术论文，自动提取结构化信息并进行任务分类
+<p align="center"> 智能分析包含"embodied"关键词的学术论文，自动提取结构化信息并进行任务分类
     <br> 
 </p>
 
 ## 🎯 项目简介
 
-**Embody Papers Analyzer** 是一个专门用于分析具身AI相关学术论文的自动化系统。该系统能够：
+**embodied Papers Analyzer** 是一个专门用于分析具身AI相关学术论文的自动化系统。该系统能够：
 
-- 🔍 **智能搜索**: 自动搜索arXiv中包含"embody"关键词的论文（2024-2025年）
+- 🔍 **智能搜索**: 自动搜索arXiv中包含"embodied"关键词的论文（2024-2025年）
 - 🤖 **AI分析**: 使用大语言模型提取论文的关键信息和结构化数据
 - 📊 **任务分类**: 基于18个具身AI任务类别进行自动分类
 - 📈 **CSV输出**: 生成结构化的分析报告，便于后续研究
@@ -77,7 +77,7 @@
 
 ### 3. 运行分析
 1. 进入你的仓库的 **Actions** 页面
-2. 选择 **"Analyze Embody Papers"** 工作流
+2. 选择 **"Analyze embodied Papers"** 工作流
 3. 点击 **"Run workflow"** 按钮
 4. 设置参数：
    - `最大分析论文数量`: 默认50篇
@@ -90,8 +90,8 @@
 ## 📊 输出文件
 
 ### 主要输出文件
-1. **详细分析结果**: `embody_papers_analysis_YYYYMMDD_HHMMSS.csv`
-2. **统计摘要**: `embody_papers_summary_YYYYMMDD_HHMMSS.csv`
+1. **详细分析结果**: `embodied_papers_analysis_YYYYMMDD_HHMMSS.csv`
+2. **统计摘要**: `embodied_papers_summary_YYYYMMDD_HHMMSS.csv`
 
 ### CSV字段说明
 | 字段名 | 描述 |
@@ -112,7 +112,7 @@
 ```bash
 # 克隆仓库
 git clone <your-repo-url>
-cd embody-papers-analyzer
+cd embodied-papers-analyzer
 
 # 安装uv包管理器（如果未安装）
 curl -LsSf https://astral.sh/uv/install.sh | sh

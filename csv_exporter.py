@@ -43,7 +43,7 @@ class CSVExporter:
         
         # 生成文件名
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"embody_papers_analysis_{timestamp}.csv"
+        filename = f"embodied_papers_analysis_{timestamp}.csv"
         filepath = os.path.join(output_dir, filename)
         
         try:
@@ -132,7 +132,7 @@ class CSVExporter:
         
         # 生成文件名
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        filename = f"embody_papers_summary_{timestamp}.csv"
+        filename = f"embodied_papers_summary_{timestamp}.csv"
         filepath = os.path.join(output_dir, filename)
         
         # 统计任务类别分布

@@ -1,7 +1,7 @@
 [project]
-name = "embody-papers-analyzer"
+name = "embodied-papers-analyzer"
 version = "1.0.0"
-description = "Academic paper analysis system for embody-related research"
+description = "Academic paper analysis system for embodied-related research"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [

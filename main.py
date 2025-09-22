@@ -1,6 +1,6 @@
 """
 学术论文分析系统主程序
-搜索包含"embody"关键词的arXiv论文并进行结构化分析
+搜索包含"embodied"关键词的arXiv论文并进行结构化分析
 """
 
 import arxiv
@@ -23,9 +23,9 @@ from paper_analyzer import PaperAnalyzer
 from csv_exporter import CSVExporter
 
 
-def search_embody_papers(max_results: int = 100) -> list[ArxivPaper]:
+def search_embodied_papers(max_results: int = 100) -> list[ArxivPaper]:
     """
-    搜索包含"embody"关键词的arXiv论文（2024-2025年）
+    搜索包含"embodied"关键词的arXiv论文（2024-2025年）
     
     Args:
         max_results: 最大搜索结果数量
@@ -33,11 +33,11 @@ def search_embody_papers(max_results: int = 100) -> list[ArxivPaper]:
     Returns:
         ArxivPaper对象列表
     """
-    logger.info("开始搜索包含'embody'关键词的论文...")
+    logger.info("开始搜索包含'embodied'关键词的论文...")
     
     # 构建搜索查询
-    # 搜索标题或摘要包含"embody"的论文，时间范围2024-2025年
-    query = 'all:embody AND submittedDate:[20240101 TO 20251231]'
+    # 搜索标题或摘要包含"embodied"的论文，时间范围2024-2025年
+    query = 'all:embodied AND submittedDate:[20240101 TO 20251231]'
     
     client = arxiv.Client(num_retries=10, delay_seconds=3)
     search = arxiv.Search(
@@ -67,12 +67,12 @@ def search_embody_papers(max_results: int = 100) -> list[ArxivPaper]:
     
     logger.info(f"搜索完成，找到 {len(papers)} 篇论文")
     
-    # 过滤确保标题或摘要确实包含"embody"（不区分大小写）
+    # 过滤确保标题或摘要确实包含"embodied"（不区分大小写）
     filtered_papers = []
     for paper in papers:
         title_lower = paper.title.lower()
         summary_lower = paper.summary.lower()
-        if 'embody' in title_lower or 'embody' in summary_lower:
+        if 'embodied' in title_lower or 'embodied' in summary_lower:
             filtered_papers.append(paper)
     
     logger.info(f"过滤后剩余 {len(filtered_papers)} 篇相关论文")
@@ -81,7 +81,7 @@ def search_embody_papers(max_results: int = 100) -> list[ArxivPaper]:
 
 def setup_argument_parser():
     """设置命令行参数解析器"""
-    parser = argparse.ArgumentParser(description='学术论文分析系统 - 分析包含embody关键词的论文')
+    parser = argparse.ArgumentParser(description='学术论文分析系统 - 分析包含embodied关键词的论文')
     
     def add_argument(*args, **kwargs):
         def get_env(key: str, default=None):
@@ -156,7 +156,7 @@ def main():
             )
         
         # 搜索论文
-        papers = search_embody_papers(max_results=args.max_papers)
+        papers = search_embodied_papers(max_results=args.max_papers)
         
         if not papers:
             logger.warning("未找到符合条件的论文")

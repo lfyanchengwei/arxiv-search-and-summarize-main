@@ -1,10 +1,10 @@
-# Embody Papers Analyzer
+# embodied Papers Analyzer
 
-一个专门用于分析包含"embody"关键词的学术论文的自动化系统。该系统能够从arXiv搜索相关论文，使用LLM进行结构化信息提取和任务分类，并生成CSV格式的分析报告。
+一个专门用于分析包含"embodied"关键词的学术论文的自动化系统。该系统能够从arXiv搜索相关论文，使用LLM进行结构化信息提取和任务分类，并生成CSV格式的分析报告。
 
 ## 🎯 功能特性
 
-- **智能搜索**: 自动搜索arXiv中标题或摘要包含"embody"关键词的论文（2024-2025年）
+- **智能搜索**: 自动搜索arXiv中标题或摘要包含"embodied"关键词的论文（2024-2025年）
 - **结构化分析**: 使用LLM提取论文的关键信息：
   - 任务领域分类（基于预定义分类表）
   - 使用的方法和技术
@@ -54,7 +54,7 @@ Fork 这个仓库到你的GitHub账户
 
 ### 3. 运行分析
 1. 进入你的仓库的 Actions 页面
-2. 选择 "Analyze Embody Papers" 工作流
+2. 选择 "Analyze embodied Papers" 工作流
 3. 点击 "Run workflow"
 4. 设置参数：
    - `最大分析论文数量`: 默认50篇
@@ -68,10 +68,10 @@ Fork 这个仓库到你的GitHub账户
 
 系统会生成以下文件：
 
-1. **详细分析结果**: `embody_papers_analysis_YYYYMMDD_HHMMSS.csv`
+1. **详细分析结果**: `embodied_papers_analysis_YYYYMMDD_HHMMSS.csv`
    - 包含每篇论文的完整分析信息
    
-2. **统计摘要**: `embody_papers_summary_YYYYMMDD_HHMMSS.csv`
+2. **统计摘要**: `embodied_papers_summary_YYYYMMDD_HHMMSS.csv`
    - 任务类别分布统计
 
 ### CSV文件字段说明
@@ -96,7 +96,7 @@ Fork 这个仓库到你的GitHub账户
 ```bash
 # 克隆仓库
 git clone <your-repo-url>
-cd embody-papers-analyzer
+cd embodied-papers-analyzer
 
 # 安装依赖（需要先安装uv）
 uv sync
@@ -131,7 +131,7 @@ uv run main.py --help
 
 ### 搜索配置
 - 搜索范围：2024年1月1日 - 2025年12月31日
-- 关键词：标题或摘要包含"embody"
+- 关键词：标题或摘要包含"embodied"
 - 排序：按提交日期降序
 
 ## 📈 使用场景

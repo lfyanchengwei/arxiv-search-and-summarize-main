@@ -1,4 +1,4 @@
-name: Analyze Embody Papers
+name: Analyze embodied Papers
 on:
   workflow_dispatch:
     inputs:
@@ -39,6 +39,6 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: embody-papers-analysis
+          name: embodied-papers-analysis
           path: output/
           retention-days: 30
