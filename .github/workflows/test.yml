@@ -1,0 +1,39 @@
+name: Test Paper Analysis
+on:
+  workflow_dispatch:
+    inputs:
+      test_papers:
+        description: '测试论文数量'
+        required: false
+        default: '5'
+        type: string
+
+jobs:
+  test-analysis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: '0.5.4'
+
+      - name: Run test analysis
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+          MODEL_NAME: ${{ secrets.MODEL_NAME }}
+          MAX_PAPERS: ${{ github.event.inputs.test_papers }}
+          USE_LOCAL_LLM: false
+        run: |
+          uv run main.py --debug
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-analysis-results
+          path: output/
+          retention-days: 7

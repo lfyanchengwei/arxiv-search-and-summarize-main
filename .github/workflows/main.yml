@@ -1,0 +1,44 @@
+name: Analyze Embody Papers
+on:
+  workflow_dispatch:
+    inputs:
+      max_papers:
+        description: '最大分析论文数量'
+        required: false
+        default: '50'
+        type: string
+      use_local_llm:
+        description: '使用本地LLM（否则使用API）'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  analyze-papers:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: '0.5.4'
+
+      - name: Run paper analysis
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+          MODEL_NAME: ${{ secrets.MODEL_NAME }}
+          MAX_PAPERS: ${{ github.event.inputs.max_papers }}
+          USE_LOCAL_LLM: ${{ github.event.inputs.use_local_llm }}
+        run: |
+          uv run main.py
+
+      - name: Upload analysis results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: embody-papers-analysis
+          path: output/
+          retention-days: 30
