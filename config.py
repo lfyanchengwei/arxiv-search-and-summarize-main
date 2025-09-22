@@ -6,7 +6,7 @@
 TASK_CATEGORIES = {
     "动作识别": {
         "definition": "识别视频或传感器数据中的预定义动作或活动",
-        "typical_output": "分类标签（如"行走"、"挥手"）",
+        "typical_output": "分类标签（如\"行走\"、\"挥手\"）",
         "datasets_metrics": "UCF101, HMDB51, 准确率 (Accuracy)"
     },
     "手物交互检测 (HOI)": {
@@ -15,7 +15,7 @@ TASK_CATEGORIES = {
         "datasets_metrics": "HICO-DET, V-COCO, mAP"
     },
     "主动物体检测": {
-        "definition": "在交互场景中主动检测可能发生交互的物体（或"热点"区域）",
+        "definition": "在交互场景中主动检测可能发生交互的物体（或\"热点\"区域）",
         "typical_output": "交互物体的边界框或热点图",
         "datasets_metrics": "Epic-Kitchens, EGTEA Gaze+"
     },
@@ -56,22 +56,22 @@ TASK_CATEGORIES = {
     },
     "任务进度估计": {
         "definition": "预测视频中每一帧的任务完成百分比，提供任务进展的实时量化评估",
-        "typical_output": "0-100%的进度值（如"开门进度30%"）",
+        "typical_output": "0-100%的进度值（如\"开门进度30%\"）",
         "datasets_metrics": "RoboCasa, OpenX Embodiment；Pearson相关系数、L2距离"
     },
     "视频问答（VQA）": {
         "definition": "根据整个视频内容回答自然语言问题，特别是关于事件发生与否及发生时间",
-        "typical_output": "问题答案（如"是，在第120帧"）",
+        "typical_output": "问题答案（如\"是，在第120帧\"）",
         "datasets_metrics": "RoboCasa, OpenX Embodiment；准确率、精确率、召回率、时间定位误差（帧差）"
     },
     "自然语言状态推理": {
         "definition": "为视频的每一帧生成描述当前状态的自然语言文本，并验证其与真实状态的一致性",
-        "typical_output": "自然语言描述（如"机械爪接触门把手"）",
+        "typical_output": "自然语言描述（如\"机械爪接触门把手\"）",
         "datasets_metrics": "RoboCasa, OpenX Embodiment；错误率、正确率"
     },
     "行为预估": {
         "definition": "预测智能体（如人、车）未来的行为或运动轨迹",
-        "typical_output": "未来一段时间内的轨迹点或行为分类（如"将左转"）",
+        "typical_output": "未来一段时间内的轨迹点或行为分类（如\"将左转\"）",
         "datasets_metrics": "用户行为数据集，准确率"
     },
     "下一活动物体检测": {
@@ -81,7 +81,7 @@ TASK_CATEGORIES = {
     },
     "交互预测": {
         "definition": "预测未来可能发生的交互动作或交互类型",
-        "typical_output": "交互动词（如"抓取"、"打开"）",
+        "typical_output": "交互动词（如\"抓取\"、\"打开\"）",
         "datasets_metrics": "Epic-Kitchens, EGTEA Gaze+"
     },
     "第一视角人体姿态估计": {
