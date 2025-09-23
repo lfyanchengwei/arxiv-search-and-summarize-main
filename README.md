@@ -3,152 +3,276 @@
  <img width=200px height=200px src="assets/logo.svg" alt="logo"></a>
 </p>
 
-<h3 align="center">embodied Papers Analyzer</h3>
+<h3 align="center">增强版学术论文分析系统</h3>
 
 <div align="center">
 
   [![Status](https://img.shields.io/badge/status-active-success.svg)]()
   [![License](https://img.shields.io/github/license/TideDra/zotero-arxiv-daily)](/LICENSE)
+  [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-支持-blue.svg)]()
+  [![Docker](https://img.shields.io/badge/Docker-支持-blue.svg)]()
 
 </div>
 
 ---
 
-<p align="center"> 智能分析包含"embodied"关键词的学术论文，自动提取结构化信息并进行任务分类
+<p align="center"> 🚀 智能分析学术论文的全功能系统，支持自定义检索、多领域分析、GitHub Actions自动化部署
     <br> 
 </p>
 
 ## 🎯 项目简介
 
-**embodied Papers Analyzer** 是一个专门用于分析具身AI相关学术论文的自动化系统。该系统能够：
+**增强版学术论文分析系统** 是一个功能强大的学术论文自动化分析平台。相比原版，新增了大量实用功能：
 
-- 🔍 **智能搜索**: 自动搜索arXiv中包含"embodied"关键词的论文（2024-2025年）
-- 🤖 **AI分析**: 使用大语言模型提取论文的关键信息和结构化数据
-- 📊 **任务分类**: 基于18个具身AI任务类别进行自动分类
-- 📈 **CSV输出**: 生成结构化的分析报告，便于后续研究
+### 🆕 增强功能亮点
+- ✅ **作者机构信息** - 新增作者和学校/机构列
+- ✅ **自定义检索词** - 用户可自定义多个检索关键词
+- ✅ **研究领域选择** - 基于arXiv分类的领域筛选
+- ✅ **自定义任务分类** - 支持添加和完全自定义任务类别
+- ✅ **时间区间设置** - 灵活的论文发表时间范围
+- ✅ **GitHub Actions部署** - 一键云端分析，无需本地环境
+- ✅ **创新性评分** - AI评估论文创新性（1-5分）
+- ✅ **中文全支持** - 完整的中文交互界面
 
-## ✨ 核心功能
-
-### 📋 信息提取
-- **论文标题** - 完整的论文标题
-- **任务分类** - 基于预定义分类表的自动分类
-- **方法技术** - 论文使用的主要方法和技术
-- **主要贡献** - 论文的创新点和贡献
-- **数据集信息** - 训练和测试数据集（分开记录）
-- **评估指标** - 使用的性能评估指标
-- **发表信息** - 发表日期和arXiv链接
-
-### 🏷️ 支持的任务分类（18类）
-
-1. **动作识别** - 识别视频或传感器数据中的预定义动作
-2. **手物交互检测 (HOI)** - 检测人体、物体及其交互关系
-3. **主动物体检测** - 检测可能发生交互的物体
-4. **跨具身模仿学习** - 人类动作到机器人策略的转换
-5. **情景记忆** - 优化少样本学习的示例顺序
-6. **自然语言查询 (NLQ)** - 基于自然语言的视频检索
-7. **VQ2D/VQ3D** - 视觉查询的2D/3D定位跟踪
-8. **具身3D视觉 grounding** - 3D环境中的目标定位
-9. **具身问答（EQA）** - 通过环境探索回答问题
-10. **导航** - 基于自然语言指令的路径规划
-11. **任务进度估计** - 实时任务完成度预测
-12. **视频问答（VQA）** - 基于视频内容的问答
-13. **自然语言状态推理** - 视频状态的文本描述
-14. **行为预估** - 智能体未来行为预测
-15. **下一活动物体检测** - 预测下一步交互物体
-16. **交互预测** - 预测未来交互动作类型
-17. **第一视角人体姿态估计** - 第一人称视角的姿态估计
-18. **文本驱动的交互生成** - 基于文本的动作序列生成
+### 🔍 核心功能
+- 🤖 **AI智能分析**: 使用大语言模型提取论文关键信息
+- 📊 **多维度分类**: 支持20+任务类别，可自定义扩展
+- 📈 **丰富输出**: CSV详细结果 + 统计摘要 + 高创新性论文
+- 🌐 **多部署方式**: GitHub Actions云端 + 本地运行 + Docker
 
 ## 🚀 快速开始
 
-### 1. Fork 项目
-点击右上角的 Fork 按钮，将项目复制到你的GitHub账户
+### 方式1: GitHub Actions云端分析（推荐⭐）
 
-### 2. 配置API密钥
-在你的仓库设置中添加以下 Secrets：
+**优势**: 无需本地环境，随时随地分析，自动生成报告
 
-| 变量名 | 必需 | 描述 | 示例 |
-|--------|------|------|------|
-| `OPENAI_API_KEY` | ✅ | OpenAI API密钥或兼容API密钥 | sk-xxx |
-| `OPENAI_API_BASE` | ❌ | API基础URL（可选） | https://api.openai.com/v1 |
-| `MODEL_NAME` | ❌ | 使用的模型名称（可选） | gpt-4o |
+1. **Fork项目** 
+   - 点击右上角Fork按钮
 
-> 💡 **推荐**: 使用 [SiliconFlow](https://cloud.siliconflow.cn/) 等免费API服务
+2. **配置API密钥**
+   - 进入仓库 `Settings` → `Secrets and variables` → `Actions`
+   - 添加 `OPENAI_API_KEY` (必需)
 
-### 3. 运行分析
-1. 进入你的仓库的 **Actions** 页面
-2. 选择 **"Analyze embodied Papers"** 工作流
-3. 点击 **"Run workflow"** 按钮
-4. 设置参数：
-   - `最大分析论文数量`: 默认50篇
-   - `使用本地LLM`: 默认false（推荐使用API）
-5. 点击 **"Run workflow"** 开始执行
+3. **运行分析**
+   - 进入 `Actions` 标签页
+   - 选择 `学术论文分析系统` workflow
+   - 点击 `Run workflow`
+   - 选择预设配置或自定义参数
 
-### 4. 下载结果
-工作流完成后，在 **Artifacts** 部分下载分析结果文件
+4. **下载结果**
+   - 分析完成后在 `Artifacts` 下载结果文件
 
-## 📊 输出文件
+#### 🎯 预设配置选项
 
-### 主要输出文件
-1. **详细分析结果**: `embodied_papers_analysis_YYYYMMDD_HHMMSS.csv`
-2. **统计摘要**: `embodied_papers_summary_YYYYMMDD_HHMMSS.csv`
+| 配置名称 | 研究领域 | 检索词示例 |
+|---------|---------|-----------|
+| 具身智能研究 | cs.AI, cs.RO, cs.CV | embodied, robotics |
+| 多模态学习 | cs.CV, cs.CL, cs.LG | multimodal, vision-language |
+| 大语言模型 | cs.CL, cs.AI, cs.LG | LLM, transformer, GPT |
+| 计算机视觉 | cs.CV, cs.AI | computer vision, detection |
+| 强化学习 | cs.LG, cs.AI, cs.RO | reinforcement learning, RL |
+| 最新趋势 | cs.AI, cs.LG, cs.CV | AI, machine learning |
 
-### CSV字段说明
-| 字段名 | 描述 |
-|--------|------|
-| Title | 论文标题 |
-| Task_Category | 任务领域分类 |
-| Methods | 使用的方法和技术 |
-| Contributions | 主要贡献和创新点 |
-| Training_Dataset | 训练数据集 |
-| Testing_Dataset | 测试数据集 |
-| Evaluation_Metrics | 评估指标 |
-| Publication_Date | 发表日期 |
-| ArXiv_URL | arXiv链接 |
-| Classification_Confidence | 分类置信度(0-1) |
-
-## 🛠️ 本地运行
+### 方式2: 本地快速启动
 
 ```bash
-# 克隆仓库
+# 1. 克隆仓库
 git clone <your-repo-url>
-cd embodied-papers-analyzer
+cd zotero-arxiv-daily
 
-# 安装uv包管理器（如果未安装）
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# 2. 安装依赖
+pip install -r requirements.txt
 
-# 安装依赖
-uv sync
+# 3. 快速启动（交互式配置）
+python quick_start.py --api_key YOUR_OPENAI_API_KEY
 
-# 设置环境变量
-export OPENAI_API_KEY="your-api-key"
-
-# 运行分析（测试3篇论文）
-uv run python test_local.py
+# 4. 或使用完整配置
+python enhanced_main.py --openai_api_key YOUR_OPENAI_API_KEY
 ```
 
-### 本地运行参数
+### 方式3: Docker部署
+
 ```bash
-uv run main.py --help
+# 构建镜像
+docker build -f Dockerfile.github -t paper-analyzer .
+
+# 运行分析
+docker run --rm \
+  -v $(pwd)/output:/app/output \
+  -e OPENAI_API_KEY="your-key" \
+  paper-analyzer \
+  python enhanced_main.py --openai_api_key "$OPENAI_API_KEY" --skip_setup
 ```
 
-## 📈 使用场景
+## 📊 功能对比
 
-- 🔬 **学术研究**: 快速了解具身AI领域最新进展
-- 📚 **文献综述**: 系统分析相关论文的方法和贡献  
-- 📊 **趋势分析**: 统计不同任务类别的研究热度
-- 🗃️ **数据集调研**: 了解常用的训练和测试数据集
+| 功能 | 原版 | 增强版 |
+|------|------|--------|
+| 检索词 | 固定"embodied" | ✅ 用户自定义多个关键词 |
+| 研究领域 | 无限制 | ✅ arXiv分类筛选 |
+| 时间范围 | 固定2024-2025 | ✅ 用户自定义任意时间 |
+| 任务分类 | 18个固定分类 | ✅ 20+分类+自定义扩展 |
+| 作者信息 | 仅姓名 | ✅ 姓名+机构信息 |
+| 创新性评估 | 无 | ✅ 1-5分AI评分 |
+| 部署方式 | 仅本地 | ✅ GitHub Actions + 本地 + Docker |
+| 界面语言 | 英文 | ✅ 完整中文支持 |
+| 配置管理 | 无 | ✅ 配置持久化保存 |
 
-## 🔧 技术架构
+## 🏷️ 支持的任务分类
+
+### 具身智能相关（原有18类+新增）
+- 动作识别、手物交互检测(HOI)、跨具身模仿学习
+- 具身问答(EQA)、导航、第一视角人体姿态估计
+- VQ2D/VQ3D、具身3D视觉grounding等
+
+### 新增通用AI分类
+- **多模态学习** - 跨模态表示学习和推理
+- **强化学习** - 策略学习和环境交互
+- **大语言模型应用** - LLM在特定领域的应用
+- **计算机视觉基础** - 图像分类、检测、分割
+- **自然语言处理** - 文本理解、生成、翻译
+
+### 自定义分类支持
+- ✅ 添加自定义任务类别
+- ✅ 完全自定义分类体系
+- ✅ 配置持久化保存
+
+## 📈 输出文件详解
+
+### 1. 详细分析结果 (`enhanced_papers_analysis_*.csv`)
+包含16个字段的完整论文信息：
+
+| 字段 | 描述 | 示例 |
+|------|------|------|
+| Title | 论文标题 | "Embodied AI for Robotics..." |
+| Authors | 作者列表 | "John Doe; Jane Smith" |
+| Authors_with_Affiliations | 带机构的作者 | "John Doe (MIT); Jane Smith (Stanford)" |
+| Primary_Affiliations | 主要机构 | "MIT; Stanford University" |
+| Task_Category | 任务分类 | "跨具身模仿学习" |
+| Research_Field | 研究领域 | "机器人学" |
+| Methods | 主要方法 | "深度强化学习，Transformer" |
+| Contributions | 主要贡献 | "提出了新的模仿学习框架" |
+| Training_Dataset | 训练数据集 | "RoboMimic, D4RL" |
+| Testing_Dataset | 测试数据集 | "Meta-World, RLBench" |
+| Evaluation_Metrics | 评估指标 | "成功率，样本效率" |
+| Publication_Date | 发表日期 | "2024-03-15" |
+| ArXiv_URL | 论文链接 | "http://arxiv.org/abs/2403.xxxxx" |
+| ArXiv_Categories | arXiv分类 | "cs.RO; cs.AI" |
+| Classification_Confidence | 分类置信度 | "0.92" |
+| Novelty_Score | 创新性评分 | "4" |
+
+### 2. 统计摘要 (`enhanced_papers_summary_*.csv`)
+- 任务类别分布统计
+- 研究领域分布统计  
+- 创新性统计分析
+- 主要机构分布
+
+### 3. 高创新性论文 (`high_novelty_papers_*.csv`)
+- 创新性评分≥4的论文
+- 按创新性评分排序
+- 便于发现突破性研究
+
+### 4. 分析报告 (`analysis_summary.md`)
+- Markdown格式的可读性报告
+- 包含图表和统计信息
+- 适合分享和展示
+
+## 🔧 高级配置
+
+### arXiv研究领域分类
+
+#### 主要领域
+- `cs` - 计算机科学
+- `math` - 数学  
+- `physics` - 物理学
+- `q-bio` - 定量生物学
+- `stat` - 统计学
+- `eess` - 电气工程与系统科学
+
+#### 计算机科学子领域
+- `cs.AI` - 人工智能
+- `cs.CV` - 计算机视觉与模式识别
+- `cs.CL` - 计算与语言
+- `cs.LG` - 机器学习
+- `cs.RO` - 机器人学
+- `cs.HC` - 人机交互
+
+### 自定义任务分类示例
+
+```python
+custom_categories = {
+    "医疗AI": {
+        "definition": "将AI技术应用于医疗诊断和治疗",
+        "typical_output": "诊断结果、治疗建议",
+        "datasets_metrics": "医疗数据集、准确率、敏感性"
+    },
+    "金融科技": {
+        "definition": "AI在金融领域的应用",
+        "typical_output": "风险评估、交易决策",
+        "datasets_metrics": "金融数据集、收益率、风险指标"
+    }
+}
+```
+
+## 🛠️ 技术架构
 
 ```
-arXiv搜索 → 论文过滤 → LLM分析 → 任务分类 → CSV导出
+用户配置 → arXiv搜索 → 领域过滤 → LLM分析 → 任务分类 → 多格式输出
+    ↓
+GitHub Actions / 本地运行 / Docker
+    ↓
+CSV + Markdown + JSON 报告
 ```
 
-- **搜索引擎**: arXiv API
-- **AI分析**: OpenAI API / 本地LLM
-- **部署平台**: GitHub Actions
-- **输出格式**: CSV文件
+### 技术栈
+- **搜索**: arXiv API
+- **AI分析**: OpenAI API / 兼容API
+- **部署**: GitHub Actions + Docker
+- **语言**: Python 3.9+
+- **依赖管理**: pip / uv
+
+## 📚 使用场景
+
+### 学术研究
+- 🔬 **文献调研**: 快速了解特定领域最新进展
+- 📊 **趋势分析**: 统计研究热点和发展趋势
+- 🏛️ **机构分析**: 了解主要研究机构和合作网络
+- 💡 **创新发现**: 识别高创新性的突破性研究
+
+### 产业应用  
+- 📈 **技术跟踪**: 跟踪竞争对手和行业动态
+- 🎯 **投资决策**: 评估技术领域的投资价值
+- 🔍 **人才招聘**: 识别优秀研究者和团队
+
+## 🚨 注意事项
+
+### API使用
+- 💰 **费用控制**: 建议设置合理的论文数量限制
+- ⏱️ **速率限制**: 注意API调用频率限制
+- 🔑 **密钥安全**: 妥善保管API密钥，不要泄露
+
+### GitHub Actions
+- ⏰ **运行时间**: 免费账户有6小时运行时间限制
+- 💾 **存储限制**: Artifacts有存储空间限制
+- 🔄 **并发限制**: 注意并发job数量限制
+
+## 📖 详细文档
+
+- 📘 [增强功能详细说明](README_ENHANCED.md)
+- 🚀 [GitHub Actions部署指南](README_GITHUB_ACTIONS.md)
+- 💻 [本地开发指南](example_usage.py)
+- 🧪 [系统测试说明](test_enhanced_system.py)
+
+## 🤝 贡献指南
+
+欢迎提交Issue和Pull Request！
+
+### 贡献方向
+- 🆕 新增任务分类定义
+- 🌐 多语言支持
+- 📊 数据可视化功能
+- 🔗 更多数据源集成
+- 🎨 UI界面改进
 
 ## 📃 许可证
 
@@ -157,12 +281,20 @@ arXiv搜索 → 论文过滤 → LLM分析 → 任务分类 → CSV导出
 ## 🙏 致谢
 
 - [arXiv](https://arxiv.org/) - 学术论文数据源
-- [OpenAI](https://openai.com/) - 大语言模型API
-- [uv](https://github.com/astral-sh/uv) - Python包管理器
+- [OpenAI](https://openai.com/) - 大语言模型API  
 - [GitHub Actions](https://github.com/features/actions) - CI/CD平台
+- [Docker](https://www.docker.com/) - 容器化平台
+- 所有贡献者和用户的支持 ❤️
 
 ---
 
 <p align="center">
   <strong>🌟 如果这个项目对你有帮助，请给个Star支持一下！</strong>
+</p>
+
+<p align="center">
+  <a href="#快速开始">快速开始</a> •
+  <a href="README_GITHUB_ACTIONS.md">GitHub Actions部署</a> •
+  <a href="README_ENHANCED.md">功能详解</a> •
+  <a href="/issues">问题反馈</a>
 </p>
