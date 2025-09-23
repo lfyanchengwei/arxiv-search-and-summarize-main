@@ -122,6 +122,187 @@ ENHANCED_TASK_CATEGORIES = {
     }
 }
 
+# 预设配置
+PRESET_CONFIGS = {
+    "embodied_ai": {
+        "name": "具身智能研究",
+        "description": "专注于具身AI、机器人学和人机交互研究，使用原始详细任务分类",
+        "keywords": ["embodied", "robotics", "manipulation", "navigation", "embodied AI", "robot learning", "imitation learning", "HOI", "egocentric"],
+        "categories": ["cs.AI", "cs.RO", "cs.CV", "cs.LG"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "use_embodied_tasks": True  # 使用原始具身智能任务分类
+    },
+    "multimodal_learning": {
+        "name": "多模态学习",
+        "description": "跨模态学习、视觉语言模型、多模态融合研究",
+        "keywords": ["multimodal", "vision-language", "CLIP", "cross-modal", "VLM", "vision transformer"],
+        "categories": ["cs.CV", "cs.CL", "cs.LG", "cs.AI"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "custom_tasks": {
+            "视觉语言预训练": {
+                "definition": "大规模视觉-语言联合预训练模型",
+                "typical_output": "跨模态表示、图文匹配分数",
+                "datasets_metrics": "CLIP, ALIGN, 零样本分类准确率"
+            },
+            "跨模态检索": {
+                "definition": "图像-文本相互检索和匹配",
+                "typical_output": "检索排序、相似度分数",
+                "datasets_metrics": "Flickr30K, MS-COCO, Recall@K"
+            },
+            "多模态对话": {
+                "definition": "结合视觉信息的对话系统",
+                "typical_output": "对话回复、视觉问答",
+                "datasets_metrics": "VQA, BLEU, CIDEr"
+            }
+        }
+    },
+    "large_language_models": {
+        "name": "大语言模型",
+        "description": "大型语言模型、指令微调、推理能力研究",
+        "keywords": ["LLM", "transformer", "GPT", "language model", "instruction tuning", "reasoning", "alignment"],
+        "categories": ["cs.CL", "cs.AI", "cs.LG"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "custom_tasks": {
+            "指令微调": {
+                "definition": "基于人类反馈的模型对齐和指令跟随",
+                "typical_output": "指令跟随回复、对齐评分",
+                "datasets_metrics": "Alpaca, Vicuna, 人工评估"
+            },
+            "思维链推理": {
+                "definition": "逐步推理和复杂问题解决",
+                "typical_output": "推理步骤、最终答案",
+                "datasets_metrics": "GSM8K, MATH, 推理准确率"
+            },
+            "代码生成": {
+                "definition": "自然语言到代码的生成和理解",
+                "typical_output": "可执行代码、代码解释",
+                "datasets_metrics": "HumanEval, MBPP, Pass@K"
+            }
+        }
+    },
+    "computer_vision": {
+        "name": "计算机视觉",
+        "description": "图像识别、目标检测、图像生成等计算机视觉研究",
+        "keywords": ["computer vision", "object detection", "segmentation", "recognition", "image generation", "diffusion"],
+        "categories": ["cs.CV", "cs.AI", "cs.LG"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "custom_tasks": {
+            "目标检测": {
+                "definition": "图像中物体的定位和识别",
+                "typical_output": "边界框、类别标签、置信度",
+                "datasets_metrics": "COCO, Pascal VOC, mAP"
+            },
+            "语义分割": {
+                "definition": "像素级的场景理解和分割",
+                "typical_output": "分割掩码、像素标签",
+                "datasets_metrics": "Cityscapes, ADE20K, mIoU"
+            },
+            "图像生成": {
+                "definition": "基于条件的图像合成和生成",
+                "typical_output": "生成图像、编辑结果",
+                "datasets_metrics": "FID, IS, LPIPS"
+            }
+        }
+    },
+    "reinforcement_learning": {
+        "name": "强化学习",
+        "description": "强化学习算法、多智能体系统、策略优化研究",
+        "keywords": ["reinforcement learning", "RL", "policy", "reward", "agent", "MARL", "offline RL"],
+        "categories": ["cs.LG", "cs.AI", "cs.RO", "cs.MA"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "custom_tasks": {
+            "离线强化学习": {
+                "definition": "从历史数据学习策略，无需在线交互",
+                "typical_output": "离线策略、价值函数",
+                "datasets_metrics": "D4RL, 归一化分数"
+            },
+            "多智能体强化学习": {
+                "definition": "多个智能体协作或竞争学习",
+                "typical_output": "多智能体策略、协调机制",
+                "datasets_metrics": "SMAC, MPE, 胜率"
+            },
+            "层次化强化学习": {
+                "definition": "分层决策和技能学习",
+                "typical_output": "层次策略、子目标",
+                "datasets_metrics": "成功率、样本效率"
+            }
+        }
+    },
+    "recent_trends": {
+        "name": "最新趋势",
+        "description": "AI领域最新发展趋势和前沿技术",
+        "keywords": ["AI", "machine learning", "deep learning", "neural network", "foundation model", "AGI"],
+        "categories": ["cs.AI", "cs.LG", "cs.CV", "cs.CL"],
+        "start_date": "2024-01-01",
+        "end_date": "2024-12-31",
+        "max_papers": 50,
+        "custom_tasks": {
+            "基础模型": {
+                "definition": "大规模预训练基础模型研究",
+                "typical_output": "预训练模型、下游任务性能",
+                "datasets_metrics": "多任务评估、零样本性能"
+            },
+            "AI安全": {
+                "definition": "人工智能的安全性和可靠性研究",
+                "typical_output": "安全评估、对抗样本检测",
+                "datasets_metrics": "鲁棒性指标、安全评分"
+            },
+            "联邦学习": {
+                "definition": "分布式隐私保护学习",
+                "typical_output": "联邦模型、隐私保护机制",
+                "datasets_metrics": "通信效率、隐私预算"
+            }
+        }
+    }
+}
+
+# arXiv分类映射
+ARXIV_CATEGORIES = {
+    # 计算机科学
+    "cs.AI": "人工智能",
+    "cs.CV": "计算机视觉与模式识别", 
+    "cs.CL": "计算与语言",
+    "cs.LG": "机器学习",
+    "cs.RO": "机器人学",
+    "cs.HC": "人机交互",
+    "cs.MA": "多智能体系统",
+    "cs.NE": "神经与进化计算",
+    "cs.IR": "信息检索",
+    "cs.MM": "多媒体",
+    
+    # 数学
+    "math.ST": "统计理论",
+    "math.OC": "优化与控制",
+    "math.PR": "概率论",
+    
+    # 统计学
+    "stat.ML": "机器学习统计",
+    "stat.AP": "应用统计",
+    
+    # 物理学
+    "physics.data-an": "数据分析统计与概率",
+    "physics.comp-ph": "计算物理",
+    
+    # 定量生物学
+    "q-bio.QM": "定量方法",
+    "q-bio.NC": "神经元与认知",
+    
+    # 电气工程
+    "eess.IV": "图像与视频处理",
+    "eess.AS": "音频与语音处理",
+    "eess.SP": "信号处理"
+}
+
 # 增强版信息提取提示词模板
 ENHANCED_EXTRACTION_PROMPT_TEMPLATE = """你是一个专业的学术论文分析专家。请仔细分析以下论文并提取结构化信息。
 
@@ -167,3 +348,11 @@ def format_enhanced_classification_table(custom_categories=None):
     for category, info in categories.items():
         formatted += f"- {category}: {info['definition']}\n"
     return formatted
+
+def get_preset_config(preset_name):
+    """获取预设配置"""
+    return PRESET_CONFIGS.get(preset_name, None)
+
+def list_preset_configs():
+    """列出所有预设配置"""
+    return [(key, config["name"], config["description"]) for key, config in PRESET_CONFIGS.items()]
