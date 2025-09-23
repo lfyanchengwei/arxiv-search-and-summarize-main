@@ -1,0 +1,24 @@
+# 增强版学术论文分析系统依赖包
+
+# 核心依赖
+arxiv>=2.1.0
+python-dotenv>=1.0.0
+loguru>=0.7.0
+tqdm>=4.66.0
+
+# OpenAI API
+openai>=1.0.0
+
+# 数据处理
+pandas>=2.0.0
+numpy>=1.24.0
+
+# 可选：本地LLM支持
+# transformers>=4.30.0
+# torch>=2.0.0
+# accelerate>=0.20.0
+
+# 开发和测试
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0

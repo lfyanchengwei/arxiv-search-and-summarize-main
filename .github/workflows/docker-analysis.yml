@@ -1,0 +1,84 @@
+name: Docker化论文分析系统
+
+on:
+  workflow_dispatch:
+    inputs:
+      search_keywords:
+        description: '检索关键词 (用逗号分隔)'
+        required: true
+        default: 'embodied,robotics,multimodal'
+        type: string
+      research_categories:
+        description: '研究领域 (用逗号分隔)'
+        required: true
+        default: 'cs.AI,cs.RO,cs.CV,cs.LG'
+        type: string
+      start_date:
+        description: '开始日期 (YYYY-MM-DD)'
+        required: true
+        default: '2024-01-01'
+        type: string
+      end_date:
+        description: '结束日期 (YYYY-MM-DD)'
+        required: true
+        default: '2024-12-31'
+        type: string
+      max_papers:
+        description: '最大论文数量'
+        required: true
+        default: '50'
+        type: string
+
+jobs:
+  docker-analysis:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: 检出代码
+      uses: actions/checkout@v4
+    
+    - name: 构建Docker镜像
+      run: |
+        docker build -f Dockerfile.github -t paper-analyzer .
+    
+    - name: 创建输出目录
+      run: mkdir -p output
+    
+    - name: 运行Docker容器进行分析
+      run: |
+        docker run --rm \
+          -v $(pwd)/output:/app/output \
+          -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+          paper-analyzer \
+          python generate_github_config.py \
+            --keywords "${{ github.event.inputs.search_keywords }}" \
+            --categories "${{ github.event.inputs.research_categories }}" \
+            --start-date "${{ github.event.inputs.start_date }}" \
+            --end-date "${{ github.event.inputs.end_date }}" \
+            --max-papers "${{ github.event.inputs.max_papers }}"
+        
+        docker run --rm \
+          -v $(pwd)/output:/app/output \
+          -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+          paper-analyzer \
+          python enhanced_main.py \
+            --openai_api_key "${{ secrets.OPENAI_API_KEY }}" \
+            --output_dir output \
+            --skip_setup
+    
+    - name: 生成分析报告
+      run: |
+        docker run --rm \
+          -v $(pwd)/output:/app/output \
+          paper-analyzer \
+          python generate_report.py --output_dir output
+    
+    - name: 上传分析结果
+      uses: actions/upload-artifact@v4
+      with:
+        name: docker-analysis-results-${{ github.run_number }}
+        path: |
+          output/*.csv
+          output/*.md
+          output/*.json
+        retention-days: 30
