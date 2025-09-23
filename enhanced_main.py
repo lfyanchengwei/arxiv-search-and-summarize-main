@@ -265,7 +265,6 @@ def setup_argument_parser():
     
     # 可选参数
     add_argument('--output_dir', type=str, help='输出目录', default='output')
-    add_argument('--use_local_llm', type=bool, help='使用本地LLM而非API', default=False)
     add_argument('--debug', action='store_true', help='调试模式')
     add_argument('--skip_setup', action='store_true', help='跳过交互式配置，使用现有配置')
     
@@ -287,9 +286,9 @@ def main():
         logger.remove()
         logger.add(sys.stdout, level="INFO")
     
-    # 验证API密钥（如果使用API）
-    if not args.use_local_llm and not args.openai_api_key:
-        logger.error("使用API模式时必须提供OpenAI API密钥")
+    # 验证API密钥
+    if not args.openai_api_key:
+        logger.error("必须提供OpenAI API密钥")
         sys.exit(1)
     
     try:
@@ -302,17 +301,13 @@ def main():
         
         # 设置LLM
         logger.info("初始化LLM...")
-        if args.use_local_llm:
-            logger.info("使用本地LLM")
-            set_global_llm(lang="Chinese")
-        else:
-            logger.info(f"使用API LLM: {args.model_name}")
-            set_global_llm(
-                api_key=args.openai_api_key,
-                base_url=args.openai_api_base,
-                model=args.model_name,
-                lang="Chinese"
-            )
+        logger.info(f"使用API LLM: {args.model_name}")
+        set_global_llm(
+            api_key=args.openai_api_key,
+            base_url=args.openai_api_base,
+            model=args.model_name,
+            lang="Chinese"
+        )
         
         # 搜索论文
         papers = search_papers_with_config(config)

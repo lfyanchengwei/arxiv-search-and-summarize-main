@@ -1,4 +1,3 @@
-from llama_cpp import Llama
 from openai import OpenAI
 from loguru import logger
 from time import sleep
@@ -6,43 +5,71 @@ from time import sleep
 GLOBAL_LLM = None
 
 class LLM:
-    def __init__(self, api_key: str = None, base_url: str = None, model: str = None,lang: str = "English"):
-        if api_key:
-            self.llm = OpenAI(api_key=api_key, base_url=base_url)
-        else:
-            self.llm = Llama.from_pretrained(
-                repo_id="Qwen/Qwen2.5-3B-Instruct-GGUF",
-                filename="qwen2.5-3b-instruct-q4_k_m.gguf",
-                n_ctx=5_000,
-                n_threads=4,
-                verbose=False,
-            )
+    def __init__(self, api_key: str, base_url: str = None, model: str = "gpt-4o", lang: str = "Chinese"):
+        """
+        初始化LLM客户端，只支持OpenAI API格式
+        
+        Args:
+            api_key: OpenAI API密钥
+            base_url: API基础URL，默认为OpenAI官方
+            model: 模型名称，默认gpt-4o
+            lang: 语言设置，默认中文
+        """
+        if not api_key:
+            raise ValueError("API密钥不能为空")
+            
+        self.llm = OpenAI(
+            api_key=api_key, 
+            base_url=base_url or "https://api.openai.com/v1"
+        )
         self.model = model
         self.lang = lang
 
     def generate(self, messages: list[dict]) -> str:
-        if isinstance(self.llm, OpenAI):
-            max_retries = 3
-            for attempt in range(max_retries):
-                try:
-                    response = self.llm.chat.completions.create(messages=messages, temperature=0, model=self.model)
-                    break
-                except Exception as e:
-                    logger.error(f"Attempt {attempt + 1} failed: {e}")
-                    if attempt == max_retries - 1:
-                        raise
-                    sleep(3)
-            return response.choices[0].message.content
-        else:
-            response = self.llm.create_chat_completion(messages=messages,temperature=0)
-            return response["choices"][0]["message"]["content"]
+        """
+        生成回复
+        
+        Args:
+            messages: 对话消息列表
+            
+        Returns:
+            生成的回复文本
+        """
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                response = self.llm.chat.completions.create(
+                    messages=messages, 
+                    temperature=0, 
+                    model=self.model
+                )
+                return response.choices[0].message.content
+            except Exception as e:
+                logger.error(f"API调用失败 (尝试 {attempt + 1}/{max_retries}): {e}")
+                if attempt == max_retries - 1:
+                    raise
+                sleep(3)
 
-def set_global_llm(api_key: str = None, base_url: str = None, model: str = None, lang: str = "English"):
+def set_global_llm(api_key: str, base_url: str = None, model: str = "gpt-4o", lang: str = "Chinese"):
+    """
+    设置全局LLM实例
+    
+    Args:
+        api_key: OpenAI API密钥
+        base_url: API基础URL
+        model: 模型名称
+        lang: 语言设置
+    """
     global GLOBAL_LLM
     GLOBAL_LLM = LLM(api_key=api_key, base_url=base_url, model=model, lang=lang)
 
 def get_llm() -> LLM:
+    """
+    获取全局LLM实例
+    
+    Returns:
+        LLM实例
+    """
     if GLOBAL_LLM is None:
-        logger.info("No global LLM found, creating a default one. Use `set_global_llm` to set a custom one.")
-        set_global_llm()
+        raise RuntimeError("请先使用 set_global_llm() 设置API密钥")
     return GLOBAL_LLM
