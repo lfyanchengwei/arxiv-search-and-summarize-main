@@ -51,7 +51,13 @@
 
 2. **配置API密钥**
    - 进入仓库 `Settings` → `Secrets and variables` → `Actions`
-   - 添加 `OPENAI_API_KEY` (必需)
+   - 添加以下Secrets：
+   
+   | Secret名称 | 必需 | 描述 | 示例值 |
+   |-----------|------|------|--------|
+   | `OPENAI_API_KEY` | ✅ 必需 | OpenAI API密钥或兼容API密钥 | `sk-xxx` 或 `Bearer xxx` |
+   | `OPENAI_API_BASE` | ❌ 可选 | API基础URL，不填默认OpenAI官方 | `https://api.siliconflow.cn/v1` |
+   | `MODEL_NAME` | ❌ 可选 | 模型名称，不填默认gpt-4o | `gpt-4o-mini`, `Qwen/Qwen2.5-7B-Instruct` |
 
 3. **运行分析**
    - 进入 `Actions` 标签页

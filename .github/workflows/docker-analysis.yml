@@ -49,6 +49,8 @@ jobs:
         docker run --rm \
           -v $(pwd)/output:/app/output \
           -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+          -e OPENAI_API_BASE="${{ secrets.OPENAI_API_BASE }}" \
+          -e MODEL_NAME="${{ secrets.MODEL_NAME }}" \
           paper-analyzer \
           python generate_github_config.py \
             --keywords "${{ github.event.inputs.search_keywords }}" \
@@ -60,9 +62,13 @@ jobs:
         docker run --rm \
           -v $(pwd)/output:/app/output \
           -e OPENAI_API_KEY="${{ secrets.OPENAI_API_KEY }}" \
+          -e OPENAI_API_BASE="${{ secrets.OPENAI_API_BASE }}" \
+          -e MODEL_NAME="${{ secrets.MODEL_NAME }}" \
           paper-analyzer \
           python enhanced_main.py \
             --openai_api_key "${{ secrets.OPENAI_API_KEY }}" \
+            --openai_api_base "${{ secrets.OPENAI_API_BASE || 'https://api.openai.com/v1' }}" \
+            --model_name "${{ secrets.MODEL_NAME || 'gpt-4o' }}" \
             --output_dir output \
             --skip_setup
     

@@ -27,11 +27,58 @@ cd zotero-arxiv-daily
 
 1. 进入仓库设置页面：`Settings` → `Secrets and variables` → `Actions`
 2. 点击 `New repository secret`
-3. 添加以下Secret：
+3. 添加以下Secrets：
 
-| Secret名称 | 描述 | 必需 |
-|-----------|------|------|
-| `OPENAI_API_KEY` | OpenAI API密钥 | ✅ 是 |
+| Secret名称 | 描述 | 必需 | 示例值 |
+|-----------|------|------|--------|
+| `OPENAI_API_KEY` | API密钥 | ✅ 必需 | `sk-xxx` 或 `Bearer xxx` |
+| `OPENAI_API_BASE` | API基础URL | ❌ 可选 | `https://api.siliconflow.cn/v1` |
+| `MODEL_NAME` | 模型名称 | ❌ 可选 | `gpt-4o-mini`, `Qwen/Qwen2.5-7B-Instruct` |
+
+#### 🔑 API配置说明
+
+**OPENAI_API_KEY (必需)**
+- OpenAI官方API密钥格式：`sk-xxxxxxxxxxxxxxxx`
+- 兼容API服务密钥格式：`Bearer xxxxxxxx` 或直接填写token
+
+**OPENAI_API_BASE (可选)**
+- 不填写：默认使用OpenAI官方API (`https://api.openai.com/v1`)
+- 自定义：使用兼容OpenAI格式的API服务
+
+**MODEL_NAME (可选)**
+- 不填写：默认使用 `gpt-4o`
+- 自定义：根据API服务支持的模型填写
+
+#### 💡 推荐免费API服务
+
+| 服务商 | API地址 | 推荐模型 | 特点 |
+|--------|---------|----------|------|
+| [SiliconFlow](https://cloud.siliconflow.cn/) | `https://api.siliconflow.cn/v1` | `Qwen/Qwen2.5-7B-Instruct` | 免费额度，多种开源模型 |
+| [DeepSeek](https://platform.deepseek.com/) | `https://api.deepseek.com/v1` | `deepseek-chat` | 高性价比，推理能力强 |
+| [智谱AI](https://open.bigmodel.cn/) | `https://open.bigmodel.cn/api/paas/v4` | `glm-4-flash` | 国产大模型，免费额度 |
+| [月之暗面](https://platform.moonshot.cn/) | `https://api.moonshot.cn/v1` | `moonshot-v1-8k` | 长文本处理能力强 |
+
+#### 🛠️ 配置示例
+
+**使用SiliconFlow免费服务：**
+```
+OPENAI_API_KEY: Bearer your_siliconflow_token
+OPENAI_API_BASE: https://api.siliconflow.cn/v1
+MODEL_NAME: Qwen/Qwen2.5-7B-Instruct
+```
+
+**使用DeepSeek服务：**
+```
+OPENAI_API_KEY: Bearer your_deepseek_token
+OPENAI_API_BASE: https://api.deepseek.com/v1
+MODEL_NAME: deepseek-chat
+```
+
+**使用OpenAI官方服务：**
+```
+OPENAI_API_KEY: sk-your_openai_key
+# OPENAI_API_BASE 和 MODEL_NAME 可以不填，使用默认值
+```
 
 ### 3. 启用GitHub Actions
 

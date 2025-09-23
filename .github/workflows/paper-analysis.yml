@@ -83,9 +83,13 @@ jobs:
     - name: 运行论文分析
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        OPENAI_API_BASE: ${{ secrets.OPENAI_API_BASE }}
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
       run: |
         python enhanced_main.py \
           --openai_api_key "${{ secrets.OPENAI_API_KEY }}" \
+          --openai_api_base "${{ secrets.OPENAI_API_BASE || 'https://api.openai.com/v1' }}" \
+          --model_name "${{ secrets.MODEL_NAME || 'gpt-4o' }}" \
           --output_dir output \
           --skip_setup
     
